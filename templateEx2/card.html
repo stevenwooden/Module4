@@ -21,16 +21,16 @@
             .artist {
                 padding: 10px;
             }
-            .artist-title{
+            .artist-name{
                 font-weight: 600;
                 font-size: 3em; 
                 padding: 0 0 10px 0;
             }
-            .artist-description {
+            .artist-title {
                 font-weight: 400;
                 font-size: 2em;
             }
-            .artist-photo {
+            .artist-image {
                 font-weight: 400;
                 font-size: 2em;
             }
@@ -40,8 +40,9 @@
         <template id ="artist-template">
             <div class="artist">
                 <div class ="artist-item">
+                    <div class="artist-name"></div>
                     <div class="artist-title"></div>
-                    <div class="artist-image"></div>
+                    <img class="artist-image" src="" alt="Artist Image"></img>
                 </div>
             </div>
         </template>
@@ -67,16 +68,26 @@
                     {title: "sky", url:"https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg" },
                 ]
             }
-            function addArtist(profile, title, image) {
-
+            function addArtist(name){
                 const template = document.getElementById("artist-template").content.cloneNode(true);
 
-                template.querySelector('.artist-item').innerText = profile;
-                template.querySelector('artist-title').innerText = title;
-                template.querySelector('artist-image').innerText = image;
+                template.querySelector('.artist-name').innerText = name;
 
-                document.querySelector('#artist-list').appendChild.(template)
+                document.querySelector('#artist-list').appendChild(template)
             }
+            function addArtistportfolio(title, image) {
+
+                const template = document.getElementById("artist-template").content.cloneNode(true);
+                
+                
+                template.querySelector('.artist-title').innerText = title;
+                template.querySelector('.artist-image').src = image;
+
+                document.querySelector('#artist-list').appendChild(template);
+
+            }
+            
+            
             function addCard(title, description) {
                 
                 //clone the template
@@ -92,10 +103,14 @@
             addCard('Card Title ', 'lorem ipsum ble bla')
             addCard('Card Title 2', 'lorem ipsum ble bla')
 
+
             data.forEach(card => addCard(`Name: ${card.name}`,`Age: ${card.age}`));
 
-            artist.forEach(artist = > addArtist(`Profile: ${artist.name}`,`Title: ${artist.portfolio.title}`,artist.portfolio.url) )
+            addArtist(`Name: ${artist.name}`)
+
+            artist.portfolio.forEach(item => addArtistportfolio(`Title: ${item.title}`,item.url) );
         </script>
 
     </body>
 </html>
+
